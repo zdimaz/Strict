@@ -1,73 +1,51 @@
-;(function($){
+(function ($) {
+  "use strict";
 
-	"use strict";
+  var Core = {
+    DOMReady: function () {
+      var self = this;
 
-	var Core = {
+      /* self.NameFunction*/
+      self.AnimateAnchor();
+    },
 
-		DOMReady: function(){
+    windowLoad: function () {
+      var self = this;
 
-			var self = this;
+      /* self.NameFunction*/
+    },
 
-			/* self.NameFunction*/
-			self.AnimateAnchor();
+    /*
+     *
+     *	Remove Default Anchor end add animate scroll for id
+     *
+     */
 
-		},
+    AnimateAnchor: function () {
+      $('a[href^="#"]').on("click", function (e) {
+        e.preventDefault();
 
-		windowLoad: function(){
+        var id = $(this).attr("href"),
+          top = $(id).offset().top;
 
-			var self = this;
+        $("html, body").stop().animate({ scrollTop: top }, 2000);
+      });
+    },
 
-			/* self.NameFunction*/
+    /*
+     *
+     *	NameFunction
+     *
+     */
 
-		},
+    NameFunction: function () {},
+  };
 
-		/*
-		*
-		*	Remove Default Anchor end add animate scroll for id
-		*
-		*/
+  $(document).ready(function () {
+    Core.DOMReady();
+  });
 
- 		AnimateAnchor: function() {
-
-	        $('a[href^="#"]').on('click',function(e){
-
-	            e.preventDefault();
-
-	            var id  = $(this).attr('href'),
-	                top = $(id).offset().top;
-
-	            $('html, body').stop().animate({scrollTop: top }, 2000);
-
-	        });
-
- 		},
-
-
- 		/*
-		*
-		*	NameFunction
-		*
-		*/
-
- 		NameFunction: function() {
-
- 		},
-
-
-	}
-
-
-	$(document).ready(function(){
-
-		Core.DOMReady();
-
-
-	});
-
-	$(window).load(function(){
-
-		Core.windowLoad();
-
-	});
-
+  $(window).load(function () {
+    Core.windowLoad();
+  });
 })(jQuery);
